@@ -21,35 +21,78 @@ const createUser = async (req: Request, res: Response) => {
   }
 }
 
-const updateSingleUser =   async (req: Request, res: Response) => {
-    // console.log(req.params.id);
-    const { name, email } = req.body;
-    try {
-      const result = await userServices.updateSingleUser(name, email, req.params.id!);
+const getAllUsers = async (req: Request, res: Response) => {
 
-      if (result.rows.length === 0) {
-        res.status(404).json({
-          success: false,
-          message: "User not found",
-        });
-      } else {
-        res.status(200).json({
-          success: true,
-          message: "User updated successfully",
-          data: result.rows[0],
-        });
-      }
-    } catch (err: any) {
-      res.status(500).json({
+  try {
+    const result = await userServices.getAllUsers();
+    const users = result.rows;
+
+    res.status(200).json({
+      success: true,
+      message: "Users retrieved successfully",
+      data: users,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+}
+
+const updateSingleUser = async (req: Request, res: Response) => {
+  const { name, email, phone, role } = req.body;
+  try {
+    const result = await userServices.updateSingleUser(name, email, phone, role, req.params.userId!);
+
+    if (result.rows.length === 0) {
+      res.status(404).json({
         success: false,
-        message: err.message,
+        message: "User not found",
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        message: "User updated successfully",
+        data: result.rows[0],
       });
     }
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
   }
+}
+
+const deleteSingleUser = async (req: Request, res: Response) => {
+  try {
+    const result = await userServices.deleteSingleUser(req.params.userId!);
+
+    if (result.rowCount === 0) {
+      res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        message: "User deleted successfully",
+      });
+    }
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+}
 
 export const userControllers = {
   createUser,
-  updateSingleUser
+  getAllUsers,
+  updateSingleUser,
+  deleteSingleUser
 }
 
 

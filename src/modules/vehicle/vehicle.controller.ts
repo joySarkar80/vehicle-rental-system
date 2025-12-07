@@ -66,8 +66,60 @@ const getSingleVehicle = async (req: Request, res: Response) => {
     }
 }
 
+const updateVehicle = async (req: Request, res: Response) => {
+const { vehicle_name, type, registration_number, daily_rent_price, availability_status } = req.body;
+    try {
+        const result = await vehicleServices.updateVehicle(vehicle_name, type, registration_number, daily_rent_price, availability_status, req.params.vehicleId as string);
+        const vehicle = result.rows[0];
+
+        if (result.rows.length === 0) {
+            res.status(404).json({
+                success: false,
+                message: "Vehicle not found",
+            });
+        } else {
+            res.status(200).json({
+                success: true,
+                message: "Vehicle updated successfully",
+                data: vehicle,
+            });
+        }
+
+    } catch (err: any) {
+        res.status(500).json({
+            success: false,
+            message: err.message,
+        });
+    }
+}
+
+const deleteSingleVehicle = async (req: Request, res: Response) => {
+  try {
+    const result = await vehicleServices.deleteSingleVehicle(req.params.vehicleId!);
+
+    if (result.rowCount === 0) {
+      res.status(404).json({
+        success: false,
+        message: "Vehicle not found",
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        message: "Vehicle deleted successfully",
+      });
+    }
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+}
+
 export const vehicleControllers = {
     createVehicle,
     getAllVehicle,
-    getSingleVehicle
+    getSingleVehicle,
+    updateVehicle,
+    deleteSingleVehicle
 }
