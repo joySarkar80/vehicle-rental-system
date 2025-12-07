@@ -16,5 +16,6 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/auth", authRouter);
+// app.use("/api/v1/vehicles", authRouter);
 
 export default app;
