@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/signup", userControllers.createUser);
 
-router.put("/fuck/:id", userControllers.updateSingleUser);
-router.put("/fuckin/:id", auth("admin"), userControllers.updateSingleUser);
+// router.put("/fuck/:id", userControllers.updateSingleUser);
+// router.put("/fuckin/:id", auth("admin"), userControllers.updateSingleUser);
 
 export const userRoutes = router;

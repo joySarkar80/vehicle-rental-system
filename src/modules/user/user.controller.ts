@@ -6,7 +6,7 @@ const createUser = async (req: Request, res: Response) => {
   try {
     const result = await userServices.createUser(req.body);
     const user = result.rows[0];
-    const { password, created_at, updated_at, ...safeData } = user;
+    const { password, ...safeData } = user;
 
     res.status(201).json({
       success: true,
