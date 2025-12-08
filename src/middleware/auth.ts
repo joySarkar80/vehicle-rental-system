@@ -23,7 +23,7 @@ const auth = (...roles: string[]) => {
             // console.log("token without bearer-->", token);
 
             const decoded = jwt.verify(token as string, config.jwtSecret as string) as JwtPayload;
-            console.log(decoded, roles);  // eita type hoccche jwt er payload
+            // console.log(decoded, roles);  // eita type hoccche jwt er payload
             req.user = decoded;
 
             if (roles.length && !roles.includes(decoded.role as string)) {
