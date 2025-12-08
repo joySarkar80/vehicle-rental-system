@@ -10,7 +10,7 @@ const createBooking = async (req: Request, res: Response) => {
         res.status(201).json({
             success: true,
             message: "Booking registered successfully",
-            data: {...bookingData, vehicle},
+            data: { ...bookingData, vehicle },
         });
     } catch (err: any) {
         res.status(500).json({
@@ -42,17 +42,16 @@ const getAllBooking = async (req: Request, res: Response) => {
 }
 
 const updateBooking = async (req: Request, res: Response) => {
-    console.log("from controller");
     try {
+        console.log("from controller");
         const userId = req.user!.id;
         const role = req.user!.role;
         const result = await bookingServices.updateBooking(req.params.bookingId as string, req.body, role, userId);
-        const allVehicle = result;
 
         res.status(200).json({
             success: true,
             message: "Booking cancelled successfully",
-            data: result.rows[0],
+            data: result,
         });
     } catch (err: any) {
         res.status(500).json({

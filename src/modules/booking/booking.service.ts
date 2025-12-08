@@ -124,9 +124,35 @@ const getAllBooking = async (role: any, userId?: any) => {
 
 const updateBooking = async (bookingId: string, payload: Record<string, unknown>, role: any, userId?: any) => {
     const { status } = payload;
+
+    if (role === "admin") {
+        const result = await pool.query(
+            `UPDATE bookings SET status = $1 WHERE id = $2 RETURNING *`,
+            [status, bookingId]);
+
+        const id = result.rows[0].vehicle_id;
+
+        await pool.query(
+            `UPDATE vehicles SET availability_status = 'available' WHERE id = $1 RETURNING *`,
+            [id]);
+
+        const vehicleData = await pool.query(`SELECT availability_status FROM vehicles WHERE id = $1`, [id]);
+        if (vehicleData.rows.length === 0) {
+            throw new Error("Vehicle not found!!!");
+        };
+        const data = result.rows[0];
+        const vehicle = vehicleData.rows[0];
+        
+        return { ...data, vehicle };
+    }
+
     const result = await pool.query(
         `UPDATE bookings SET status = $1 WHERE id = $2 RETURNING *`,
         [status, bookingId]);
+
+    await pool.query(
+        `UPDATE vehicles SET availability_status = 'available' WHERE id = $1 RETURNING *`,
+        [result.rows[0].vehicle_id]);
 
     return result;
 }
