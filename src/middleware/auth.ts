@@ -13,12 +13,14 @@ const auth = (...roles: string[]) => {
 
             // token na thakle
             if (!authHeader) {
-                return res.status(500).json({
-                    message: "You are not allowd!!!"
+                return res.status(401).json({
+                    success: false,
+                    message: "Missing or invalid authentication token",
+                    errors: "Unauthorized"
                 });
             }
 
-            const token = authHeader.split(' ')[1]; 
+            const token = authHeader.split(' ')[1];
 
             // console.log("token without bearer-->", token);
 
@@ -27,8 +29,10 @@ const auth = (...roles: string[]) => {
             req.user = decoded;
 
             if (roles.length && !roles.includes(decoded.role as string)) {
-                return res.status(500).json({
-                    error: "Unauthorized"
+                return res.status(401).json({
+                    success: false,
+                    message: "Missing or invalid authentication token",
+                    errors: "Unauthorized"
                 })
             }
 

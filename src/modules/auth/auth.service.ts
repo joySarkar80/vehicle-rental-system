@@ -18,7 +18,7 @@ const loginUser = async (payload: Record<string, unknown>) => {
     const match = await bcrypt.compare(pass as string, data.password);
 
     if (!match) {
-        return false;
+        throw new Error("Password dont match");
     }
 
 

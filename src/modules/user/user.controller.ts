@@ -14,7 +14,7 @@ const createUser = async (req: Request, res: Response) => {
       data: safeData,
     });
   } catch (err: any) {
-    res.status(500).json({
+    res.status(400).json({
       success: false,
       message: err.message,
     });
@@ -41,14 +41,16 @@ const getAllUsers = async (req: Request, res: Response) => {
 }
 
 const updateSingleUser = async (req: Request, res: Response) => {
-  const { name, email, phone, role } = req.body;
+  const userId = req.user!.id;
+  const tokenRole = req.user!.role;
   try {
-    const result = await userServices.updateSingleUser(name, email, phone, role, req.params.userId!);
+    const result = await userServices.updateSingleUser(req.params.userId as string, req.body, tokenRole, userId);
 
     if (result.rows.length === 0) {
       res.status(404).json({
-        success: false,
+        success: true,
         message: "User not found",
+        data: []
       });
     } else {
       res.status(200).json({
@@ -58,7 +60,7 @@ const updateSingleUser = async (req: Request, res: Response) => {
       });
     }
   } catch (err: any) {
-    res.status(500).json({
+    res.status(400).json({
       success: false,
       message: err.message,
     });

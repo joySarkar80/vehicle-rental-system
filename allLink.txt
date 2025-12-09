@@ -1,0 +1,91 @@
+1. http://localhost:5000/api/v1/auth/signup          = for signup, uniqe email, role- costomer or admin, put every value name, email - uniqe, password, phone, role
+
+2. http://localhost:5000/api/v1/auth/signin          = for signin, put email and password must
+
+3. http://localhost:5000/api/v1/vehicles             = for create vehicle, admin only, put every value vehicle_name, type, registration_number - uniqe, daily_rent_price, availability_status 
+
+4. http://localhost:5000/api/v1/vehicles             = for get all vehicles for public
+
+5. http://localhost:5000/api/v1/vehicles/:vehicleId  = for get single vehicle for public
+
+6. http://localhost:5000/api/v1/vehicles/:vehicleId  = for update single vehicle for admin only, put all value vehicle_name, type, registration_number - uniqe, daily_rent_price, availability_status 
+
+7. http://localhost:5000/api/v1/vehicles/:vehicleId  = for delete single vehicle for admin only
+
+8. http://localhost:5000/api/v1/users                = for get all users for admin only
+
+9. http://localhost:5000/api/v1/users/:userId        = for update users, admin can update users role also details, customer can update own profile not his own role, admin can change users role customer to admin
+                                                       when admin change costomer role to admin, customer need to login agin for get new token, for access full system
+
+
+
+joy - admin
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsIm5hbWUiOiJqb3kiLCJlbWFpbCI6ImpveUBnbWFpbC5jb20iLCJwaG9uZSI6IjAxNzEyMzQ1NjEwIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzY1MjI0MTc4LCJleHAiOjE3NjU4Mjg5Nzh9.L4x01p-4mdY8UW-QFbl7u41sUbe3cVfP1XJtB9cs46U
+
+bappy - customer
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsIm5hbWUiOiJiYXBweSIsImVtYWlsIjoiYmFwcHlAZ21haWwuY29tIiwicGhvbmUiOiIwMTcxMjM0NTYxMCIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc2NTIyNDIzMiwiZXhwIjoxNzY1ODI5MDMyfQ.bCKXAuvhCBjmwHkILZhLX_cZtozSWG3Kj65q2qzjrbs
+
+pori - admin
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsIm5hbWUiOiJwb3JpIG1vbmkiLCJlbWFpbCI6InBvcmlAZ21haWwuY29tIiwicGhvbmUiOiIwMTcxMjM0NTYxMCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTMxNzU5MCwiZXhwIjoxNzY1OTIyMzkwfQ.226YS4Nv5EPMKtp9d1by6VxGqQa86vF6QDknwOeuIWI
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
