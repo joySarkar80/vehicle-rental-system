@@ -73,8 +73,9 @@ const deleteSingleUser = async (req: Request, res: Response) => {
 
     if (result.rowCount === 0) {
       res.status(404).json({
-        success: false,
+        success: true,
         message: "User not found",
+        data: []
       });
     } else {
       res.status(200).json({
@@ -83,7 +84,7 @@ const deleteSingleUser = async (req: Request, res: Response) => {
       });
     }
   } catch (err: any) {
-    res.status(500).json({
+    res.status(400).json({
       success: false,
       message: err.message,
     });

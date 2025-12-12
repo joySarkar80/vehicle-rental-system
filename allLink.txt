@@ -17,16 +17,39 @@
 9. http://localhost:5000/api/v1/users/:userId        = for update users, admin can update users role also details, customer can update own profile not his own role, admin can change users role customer to admin
                                                        when admin change costomer role to admin, customer need to login agin for get new token, for access full system
 
+10. http://localhost:5000/api/v1/users/userId        = for delete user, for admin only but if customer have active booking admin can not delete this user
+ 
+11. http://localhost:5000/api/v1/bookings            = for create booking, for customer or admin. When you create a booking you must put token customer_id in request body.
+
+12. http://localhost:5000/api/v1/bookings            = for Get all bookings, Role-based (Admin sees all, Customer sees own)
+
+13. admin view = http://localhost:5000/api/v1/bookings//:bookingId     = for change status in bookings, admin can change any customers booking status acative to returned..
+
+13. customer view = http://localhost:5000/api/v1/bookings//:bookingId  = for change status in bookings, if change active to cancel then same time update vehicle status booked to available. when you update bookings status you must put valid token, which one create bookings. 
 
 
 joy - admin
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsIm5hbWUiOiJqb3kiLCJlbWFpbCI6ImpveUBnbWFpbC5jb20iLCJwaG9uZSI6IjAxNzEyMzQ1NjEwIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzY1MjI0MTc4LCJleHAiOjE3NjU4Mjg5Nzh9.L4x01p-4mdY8UW-QFbl7u41sUbe3cVfP1XJtB9cs46U
 
-bappy - customer
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsIm5hbWUiOiJiYXBweSIsImVtYWlsIjoiYmFwcHlAZ21haWwuY29tIiwicGhvbmUiOiIwMTcxMjM0NTYxMCIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc2NTIyNDIzMiwiZXhwIjoxNzY1ODI5MDMyfQ.bCKXAuvhCBjmwHkILZhLX_cZtozSWG3Kj65q2qzjrbs
-
 pori - admin
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsIm5hbWUiOiJwb3JpIG1vbmkiLCJlbWFpbCI6InBvcmlAZ21haWwuY29tIiwicGhvbmUiOiIwMTcxMjM0NTYxMCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTMxNzU5MCwiZXhwIjoxNzY1OTIyMzkwfQ.226YS4Nv5EPMKtp9d1by6VxGqQa86vF6QDknwOeuIWI
+
+bappy - customer
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsIm5hbWUiOiJiYXBweSIsImVtYWlsIjoiYmFwcHlAZ21haWwuY29tIiwicGhvbmUiOiIwMTcxMjM0NTYxMCIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc2NTU0MjYyOSwiZXhwIjoxNzY2MTQ3NDI5fQ.dc7ea3KrSaWky-Ob9g8Y6rPhYVeNy4TiG1QYHt8IMnU
+
+bubli - customer
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTksIm5hbWUiOiJidWJsaSIsImVtYWlsIjoiYnVibGlAZ21haWwuY29tIiwicGhvbmUiOiIwMTcxMjM0NTYxMCIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTc2NTU0MjU4MiwiZXhwIjoxNzY2MTQ3MzgyfQ.fPREdqJivkXAXqa5icT8G3msdkYMHwLHgmJbIDi4060
+
+
+
+
+
+
+
+
+
+
+
 
 
 
