@@ -8,7 +8,7 @@ const loginUser = async (payload: Record<string, unknown>) => {
     const email = payload.email;
     const pass = payload.password;
     const result = await pool.query(`SELECT * FROM users WHERE email=$1`, [email]);
-    const data = result.rows[0];   // db theke nie esheche..
+    const data = result.rows[0];   
     const { password, ...user } = data;
     
 
@@ -25,7 +25,6 @@ const loginUser = async (payload: Record<string, unknown>) => {
     const token = jwt.sign({ id: data.id, name: data.name, email: data.email, phone: data.phone, role: data.role }, config.jwtSecret as string, {
         expiresIn: "7d",
     });
-    console.log({ token });  // console.log
     return { token, user };
 };
 

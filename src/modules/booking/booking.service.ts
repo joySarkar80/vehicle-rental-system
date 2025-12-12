@@ -16,7 +16,6 @@ const createBooking = async (payload: Record<string, unknown>, userId?: any) => 
         throw new Error("Token customer_id and body customer_id not match!!!");
     };
 
-    console.log(vehicle.rows[0].availability_status);
     const days = Math.floor((new Date(rent_end_date as string).getTime() - new Date(rent_start_date as string).getTime()) / (1000 * 60 * 60 * 24));
     if (days <= 0) {
         throw new Error("Put valid date");
