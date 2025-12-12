@@ -97,6 +97,7 @@ const getAllBooking = async (role: any, userId?: any) => {
     }
 
     const message = "Your bookings retrieved successfully";
+    const message2 = "You do not book any vehicle";
     const res = await pool.query(
         `SELECT 
           b.id,
@@ -128,7 +129,11 @@ const getAllBooking = async (role: any, userId?: any) => {
         }
     }));
 
-    return [bookings, message];
+    if (bookings.length === 0) {
+        return [bookings, message2];
+    } else {
+        return [bookings, message];
+    }
 }
 
 const updateBooking = async (bookingId: string, payload: Record<string, unknown>, role: any, userId?: any) => {
@@ -139,7 +144,7 @@ const updateBooking = async (bookingId: string, payload: Record<string, unknown>
         const message = "Booking marked as returned. Vehicle is now available";
         if (getBookingById.rows.length > 0) {
             const result = await pool.query(
-            `UPDATE bookings SET status = $1 WHERE id = $2 RETURNING 
+                `UPDATE bookings SET status = $1 WHERE id = $2 RETURNING 
              id, 
              customer_id, 
              vehicle_id,
@@ -173,7 +178,7 @@ const updateBooking = async (bookingId: string, payload: Record<string, unknown>
         const message = "Booking cancelled successfully";
         if (userId === getBookingById.rows[0].customer_id) {
             const result = await pool.query(
-            `UPDATE bookings SET status = $1 WHERE id = $2 RETURNING 
+                `UPDATE bookings SET status = $1 WHERE id = $2 RETURNING 
              id, 
              customer_id, 
              vehicle_id,
