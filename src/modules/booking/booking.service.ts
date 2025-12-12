@@ -3,7 +3,7 @@ import { pool } from "../../config/db";
 const createBooking = async (payload: Record<string, unknown>, userId?: any) => {
     const { customer_id, vehicle_id, rent_start_date, rent_end_date } = payload;
 
-    const vehicle = await pool.query(`SELECT vehicle_name, daily_rent_price, availability_status FROM vehicles WHERE id = $1`, [vehicle_id]);
+    const vehicle = await pool.query(`SELECT vehicle_name, daily_rent_price FROM vehicles WHERE id = $1`, [vehicle_id]);
     if (vehicle.rows.length === 0) {
         throw new Error("Vehicle not found, chose other vehicle!!!");
     };

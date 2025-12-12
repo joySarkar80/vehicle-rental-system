@@ -23,6 +23,7 @@ Live link: [Vehicle rental system](https://vehicle-rental-system-opal-alpha.verc
 ---
 
 ## 🔐 Authentication & Authorization
+When put token in postman select Auth -> Auth type -> Bearer token
 
 ### User Roles
 - **Admin** - Full system access to manage vehicles, users and all bookings
